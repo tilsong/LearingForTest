@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
@@ -23,6 +24,8 @@ class CafeKiostTest {
         System.out.println(">>>>> 담긴 음료 : " + cafeKiost.getBeverages().get(0).getName());
     }
 
+//    @DisplayName("음료 1개를 추가 테스트")
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.") // 좀 더 명확한 의미를 담음. 처음 본 사람도 이해 됨.
     @Test
     void add() {
         CafeKiost cafeKiost = new CafeKiost();
@@ -30,7 +33,6 @@ class CafeKiostTest {
 
         assertThat(cafeKiost.getBeverages().size()).isEqualTo(1);
         assertThat(cafeKiost.getBeverages().get(0).getName()).isEqualTo("아메리카노");
-
     }
 
     @Test
@@ -58,6 +60,24 @@ class CafeKiostTest {
 
         cafeKiost.clear();
         assertThat(cafeKiost.getBeverages()).isEmpty();
+    }
+
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
+    @Test
+    void calculateTotalPrice() {
+        // given
+        CafeKiost cafeKiost = new CafeKiost();
+        Americano americano = new Americano();
+        Latte latte = new Latte();
+
+        cafeKiost.add(americano);
+        cafeKiost.add(latte);
+
+        // when - 보통 1줄
+        int totalPrice = cafeKiost.calculateTotalPrice();
+
+        // then
+        assertThat(totalPrice).isEqualTo(8500);
     }
 
     @Test
