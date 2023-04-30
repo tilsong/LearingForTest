@@ -7,10 +7,10 @@ public class CafeKioskRunner {
 
     public static void main(String[] args) {
         CafeKiost cafeKiost = new CafeKiost();
-        cafeKiost.add(new Americano());
+//        cafeKiost.add(new Americano());
         System.out.println(">>>> 아메리카노 추가");
 
-        cafeKiost.add(new Latte());
+//        cafeKiost.add(new Latte());
         System.out.println(">>>> 라떼 추가");
 
         int totalPrice = cafeKiost.calculateTotalPrice();
