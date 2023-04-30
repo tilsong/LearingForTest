@@ -2,7 +2,6 @@ package sample.cafekiosk.unit.order;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import sample.cafekiosk.unit.beverage.Americno;
 import sample.cafekiosk.unit.beverage.Beverage;
 
 import java.time.LocalDateTime;
