@@ -10,6 +10,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Getter
 public class Order {
-    private final LocalDateTime orderDateTime;
-    private final List<Beverage> beverages;
+    public final LocalDateTime orderDateTime;
+    public final List<Beverage> beverages;
 }
