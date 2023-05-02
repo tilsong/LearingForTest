@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.BaseEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
