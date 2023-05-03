@@ -6,15 +6,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 // @SpringBootTest
-@ActiveProfiles("test")
-@DataJpaTest // SpringBootTest 보다 가벼움, jpa 관련 속성만 주입
-public class ProductRepositoryTest {
+//@ActiveProfiles("test")
+//@DataJpaTest // SpringBootTest 보다 가벼움, jpa 관련 속성만 주입, 트랜잭션 롤백도 사용가능!
+@Transactional
+public class ProductRepositoryTest extends IntegrationTestSupport {
     @Autowired
     private ProductRepository productRepository;
 

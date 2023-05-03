@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import sample.cafekiosk.spring.ControllerTestSupport;
 import sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
 import sample.cafekiosk.spring.api.service.product.ProductService;
 import sample.cafekiosk.spring.api.service.product.response.ProductResponse;
@@ -28,18 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 // 컨트롤러 관련 빈을 올릴 수 있는 가벼운 테스트 어노테이션
-@WebMvcTest(controllers = ProductController.class)
-class ProductControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @MockBean // 테스트하는 컨트롤러의 의존성을 추가해줌.
-    private ProductService productService;
-
+class ProductControllerTest extends ControllerTestSupport {
 
     @DisplayName("신규 상품을 등록한다.")
     @Test
