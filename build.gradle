@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.11'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.asciidoctor.jvm.convert' version "3.3.2"
 }
 
 group = 'sample'
@@ -12,6 +13,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    asciidoctorExt
 }
 
 repositories {
@@ -35,8 +37,36 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 
     implementation 'com.google.guava:guava:31.1-jre'
+
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+ext { // 결과들 담는 곳
+    snippetsDir = file('build/generated-snippets')
+}
+
+test { // 1 테스트 수행
+    outputs.dir snippetsDir
+}
+
+asciidoctor { // 2 아스키 닥터 수행. 테스트 결과로 문서 만듦
+    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    sources { // 특정 파일만 html로 만든다.
+        include("**/index.adoc")
+    }
+    baseDirFollowsSourceFile()
+    dependsOn test
+}
+
+bootJar { // 3 나온 문서를 정적 파일로 static에 복사하기
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}") {
+        into 'static/docs'
+    }
 }

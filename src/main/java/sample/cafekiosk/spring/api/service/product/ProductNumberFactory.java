@@ -1,9 +1,11 @@
 package sample.cafekiosk.spring.api.service.product;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
 
 @RequiredArgsConstructor
+@Component
 public class ProductNumberFactory {
 
     private final ProductRepository productRepository;

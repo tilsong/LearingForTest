@@ -25,7 +25,9 @@ import static org.assertj.core.api.Assertions.*;
 import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.SELLING;
 import static sample.cafekiosk.spring.domain.product.ProductType.*;
 
-class OrderServiceTest extends IntegrationTestSupport {
+@ActiveProfiles("test")
+@SpringBootTest
+class OrderServiceTest { //extends IntegrationTestSupport {
 
     @Autowired
     private ProductRepository productRepository;
